@@ -12,15 +12,19 @@
 
 
                 <div class="form-group">
-                    <label for="Fullname" class="form-label">Nhập email</label>
+                    <label for="Fullname" class="form-label">Email</label>
                     <input type="email" name="email" class="form-control">
                     <span class="form-message"></span>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="position: relative;">
                     <label for="password" class="form-label">Mật khẩu</label>
-                    <input type="password" name="password" class="form-control">
+                    <input type="password" name="password" class="form-control" id="password">
                     <span class="form-message"></span>
+
+                    <span id="togglePassword" style="position: absolute; right: 10px; top: 50px; cursor: pointer;">
+                        <i class="fa-solid fa-eye" id="eyeIcon" style="cursor: pointer;"></i>
+                    </span>
                 </div>
 
 
@@ -47,4 +51,18 @@
     });
 </script>
 @endif
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        togglePassword.addEventListener('click', function() {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
 @endsection
