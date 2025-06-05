@@ -1,4 +1,4 @@
-# PHP base image with Apache
+# PHP base image với Apache
 FROM php:8.1-apache
 
 # Cài các thư viện cần thiết cho Laravel
@@ -13,27 +13,33 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Cài Composer từ official composer image
+# Bật module rewrite của Apache
+RUN a2enmod rewrite
+
+# Copy Composer từ official image
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy toàn bộ mã nguồn Laravel vào container
-COPY . /var/www/html
-
-# Thiết lập quyền
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Bật module rewrite của Apache để Laravel hoạt động
-RUN a2enmod rewrite
+COPY . /var/www
 
 # Đặt thư mục làm việc mặc định
-WORKDIR /var/www/html
+WORKDIR /var/www
 
-# Cài đặt Composer và optimize project
+# Cài đặt Composer dependencies
 RUN composer install --optimize-autoloader --no-dev
 
-# Nếu có migration, bỏ comment dòng dưới (chỉ dùng khi chắc chắn đã có DB kết nối)
-# RUN php artisan migrate --force
+# Tạo thư mục runtime và phân quyền
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 775 storage bootstrap/cache
 
-# Expose cổng 80 để Render có thể truy cập
+# Copy thư mục public vào đúng vị trí Apache phục vụ
+RUN rm -rf /var/www/html && ln -s /var/www/public /var/www/html
+
+# Tạo APP_KEY và cache config
+RUN cp .env.example .env && \
+    php artisan key:generate && \
+    php artisan config:cache && \
+    php artisan route:cache
+
+# Expose cổng 80
 EXPOSE 80
