@@ -160,9 +160,12 @@ class CartController extends Controller
 
     public function dathang(Request $request)
     {
+        if (!session()->has('cart') || empty(session('cart'))) {
+            return redirect()->back()->with('error', 'Không có đơn hàng để đặt!');
+        }
+
         $validatedDataDatHang = $request->validate([]);
 
-        // $validatedDataDatHang['ngaydathang'] = Carbon::now();
         $validatedDataDatHang['ngaygiaohang'] = Carbon::now()->addDay(4);
         $validatedDataDatHang['tongtien'] = $request->tongtien;
         $validatedDataDatHang['phuongthucthanhtoan'] = $request->redirect;
@@ -172,11 +175,11 @@ class CartController extends Controller
         $validatedDataDatHang['sdt'] = $request->display_sdt;
         $validatedDataDatHang['trangthai'] = "đang xử lý";
         $validatedDataDatHang['id_kh'] = Auth::user()->id_kh;
+
         $dathangCre = Dathang::create($validatedDataDatHang);
+
+
         $validatedDataCTDatHang = $request->validate([]);
-        if (!session()->has('cart') || empty(session('cart'))) {
-            return redirect()->back()->with('error', 'Không có đơn hàng để đặt!');
-        }
 
         foreach (session('cart') as $item) {
             $sanpham = Sanpham::findOrFail($item['id_sanpham']);

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('dathang', function (Blueprint $table) {
             $table->increments('id_dathang'); // Change to increments for auto-increment
-            $table->dateTime('ngaydathang')->nullable()->useCurrent();
-            $table->dateTime('ngaygiaohang')->nullable()->useCurrent();
+            $table->timestamp('ngaydathang')->nullable()->useCurrent();
+            $table->timestamp('ngaygiaohang')->nullable()->useCurrent();
             $table->unsignedBigInteger('tongtien');
             $table->string('phuongthucthanhtoan', 10);
             $table->string('diachigiaohang', 100)->nullable();
