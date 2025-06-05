@@ -18,6 +18,7 @@ use App\Repositories\DanhmucRepository;
 
 use App\Repositories\IOrderRepository;
 use App\Repositories\OrderRepository;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,11 +27,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-       $this->app->bind(IProductRepository::class, ProductRepository::class);
-       $this->app->bind(ISanphamRepository::class, SanphamRepository::class);
-       $this->app->bind(IDanhmucRepository::class, DanhmucRepository::class);
-       $this->app->bind(IAdminRepository::class, AdminRepository::class);
-       $this->app->bind(IOrderRepository::class, OrderRepository::class);
+        $this->app->bind(IProductRepository::class, ProductRepository::class);
+        $this->app->bind(ISanphamRepository::class, SanphamRepository::class);
+        $this->app->bind(IDanhmucRepository::class, DanhmucRepository::class);
+        $this->app->bind(IAdminRepository::class, AdminRepository::class);
+        $this->app->bind(IOrderRepository::class, OrderRepository::class);
     }
 
     /**
@@ -38,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (env('APP_ENV') !== 'local') {
+            URL::forceScheme('https');
+        }
     }
 }
