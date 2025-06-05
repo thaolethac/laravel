@@ -45,7 +45,7 @@ class Danhmuc extends Model
      * @var array
      */
     protected $hidden = [
-        
+
     ];
 
     /**
@@ -63,7 +63,7 @@ class Danhmuc extends Model
      * @var array
      */
     protected $dates = [
-        
+
     ];
 
     /**
