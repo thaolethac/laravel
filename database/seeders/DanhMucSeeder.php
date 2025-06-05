@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\DanhMuc;
+use App\Models\Danhmuc;
 
 class DanhMucSeeder extends Seeder
 {
@@ -17,7 +17,7 @@ class DanhMucSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            DanhMuc::create($item);
+            Danhmuc::create($item);
         }
     }
 }
