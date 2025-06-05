@@ -37,8 +37,7 @@ RUN rm -rf /var/www/html && ln -s /var/www/public /var/www/html
 RUN cp .env.example .env && \
     php artisan key:generate && \
     php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan migrate
+    php artisan route:cache
 
 # Expose cổng 80
 EXPOSE 80
