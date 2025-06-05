@@ -32,11 +32,6 @@ WORKDIR /var/www/html
 # Cài đặt Composer và optimize project
 RUN composer install --optimize-autoloader --no-dev
 
-# Tạo APP_KEY và cache config
-RUN php artisan key:generate \
-    && php artisan config:cache \
-    && php artisan route:cache
-
 # Nếu có migration, bỏ comment dòng dưới (chỉ dùng khi chắc chắn đã có DB kết nối)
 # RUN php artisan migrate --force
 
