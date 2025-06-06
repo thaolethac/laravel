@@ -1,16 +1,13 @@
 @extends('layout')
 @section('content')
 <!-- Main -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="body" style="padding-top: 50px;">
     <a class="buy_continute" href="{{ URL::to('/') }}">
         <i class="fa fa-arrow-circle-left"></i> Trở lại mua hàng
     </a>
 
-    @if(session('success'))
-    <div class="alert alert-success mt-3">
-        {{ session('success') }}
-    </div>
-    @endif
 
     <div class="product_card mt-3">
         <div class="product__details-img mr-2">
@@ -74,29 +71,30 @@
     </div>
     <div class="product-description">
         <textarea class="form-control" id="mota" name="mota" rows="4" disabled style="font-size: 16px;background-color: transparent;border: none;color: #555;padding: 10px 0px;resize: none;overflow: hidden;">{{$sanpham->mota}}</textarea>
-        <!-- <textarea class="form-control" id="mota" name="mota" rows="4" disabled
-                style="font-size: 16px; background-color: transparent; border: none; color: #555; padding: 10px 0px; resize: none; overflow: hidden;">
-                {{ $sanpham->mota }}
-            </textarea> -->
-        <button id="toggleMotaBtn" style="margin-top: 5px; background: none; border: none; color: #1877f2; cursor: pointer;">Xem thêm</button>
+        <button id="toggleMotaBtn" style="margin-top: 5px; background: none; border: none; color: #1877f2; cursor: pointer; display: none;">Xem thêm</button>
     </div>
     <script>
         const btn = document.getElementById("toggleMotaBtn");
         const mota = document.getElementById("mota");
 
+        const lineCount = mota.value.split('\n').length;
+
+        if (lineCount > 4) {
+            btn.style.display = "inline";
+        }
+
         let expanded = false;
         btn.addEventListener("click", () => {
             expanded = !expanded;
             if (expanded) {
-                mota.rows = 15; // Hiển thị toàn bộ nội dung (bạn có thể tăng thêm)
+                mota.rows = lineCount+1;
                 btn.textContent = "Thu gọn";
             } else {
-                mota.rows = 4; // Hiển thị ngắn gọn ban đầu
+                mota.rows = 4;
                 btn.textContent = "Xem thêm";
             }
         });
     </script>
-
 
     <hr />
 
@@ -272,4 +270,15 @@
         });
     </script>
 </div>
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Thành công',
+        text: "{{ session('success') }}",
+        timer: 3000,
+        showConfirmButton: false
+    });
+</script>
+@endif
 @endsection
