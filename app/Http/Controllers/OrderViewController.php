@@ -24,7 +24,7 @@ class OrderViewController extends Controller
 
         $user = Auth::user();
         if ($user) {
-            $orders = $this->OrderRepository->orderView($user->id_kh);
+            $orders = $this->OrderRepository->orderView($user->id_nd);
             // print_r($orders);
             return view('pages.donhang', ['orders' => $orders]);
         } else {

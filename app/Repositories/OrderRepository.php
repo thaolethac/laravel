@@ -28,9 +28,9 @@ class OrderRepository implements IOrderRepository
     }
     public function findUser($id)
     {
-        return DB::table('khachhang')
-            ->join('dathang', 'khachhang.id_kh', '=', 'dathang.id_kh')
-            ->select('khachhang.*')
+        return DB::table('nguoidung')
+            ->join('dathang', 'nguoidung.id_nd', '=', 'dathang.id_nd')
+            ->select('nguoidung.*')
             ->where('dathang.id_dathang', $id)
             ->get();
     }
@@ -41,7 +41,7 @@ class OrderRepository implements IOrderRepository
 
     public function orderView($id)
     {
-        return Dathang::where('id_kh', $id)
+        return Dathang::where('id_nd', $id)
             ->orderBy('ngaydathang', 'desc')
             ->get();
     }

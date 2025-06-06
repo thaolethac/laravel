@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Models\KhachHang;
+use App\Models\NguoiDung;
 
 class ForgotPasswordController extends Controller
 {
@@ -18,7 +18,7 @@ class ForgotPasswordController extends Controller
 
     public function sendResetLink(Request $request) {
         $request->validate(['email' => 'required|email']);
-        $user = KhachHang::where('email', $request->email)->first();
+        $user = NguoiDung::where('email', $request->email)->first();
 
         if (!$user) {
             return back()->with('error', 'Email không tồn tại!');
@@ -57,7 +57,7 @@ class ForgotPasswordController extends Controller
             return back()->with('error', 'Token không hợp lệ hoặc đã hết hạn!');
         }
 
-        $user = KhachHang::where('email', $request->email)->first();
+        $user = NguoiDung::where('email', $request->email)->first();
         $user->password = Hash::make($request->password);
         $user->save();
 

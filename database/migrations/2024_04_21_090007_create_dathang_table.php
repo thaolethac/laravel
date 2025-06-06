@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('hoten', 100)->nullable();
             $table->unsignedBigInteger('sdt')->nullable();
             $table->string('email', 100)->nullable();
-            $table->integer('id_kh');
+            $table->integer('id_nd');
             $table->index('id_dathang'); // Add index to id_dathang
         });
     }

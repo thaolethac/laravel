@@ -26,7 +26,7 @@ class ChitietDonhang extends Model
      * @var array
      */
     protected $fillable = [
-        'tensp', 'soluong', 'giamgia', 'giatien', 'giakhuyenmai', 'id_sanpham', 'id_dathang', 'id_kh',
+        'tensp', 'soluong', 'giamgia', 'giatien', 'giakhuyenmai', 'id_sanpham', 'id_dathang', 'id_nd',
     ];
 
     /**
@@ -43,7 +43,7 @@ class ChitietDonhang extends Model
      */
     protected $casts = [
         'id_ctdonhang' => 'int', 'soluong' => 'int', 'giamgia' => 'int', 'giatien' => 'int', 'giakhuyenmai' => 'int',
-        'id_sanpham' => 'int', 'id_dathang' => 'int', 'id_kh' => 'int',
+        'id_sanpham' => 'int', 'id_dathang' => 'int', 'id_nd' => 'int',
     ];
 
     /**

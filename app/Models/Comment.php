@@ -19,7 +19,7 @@ class Comment extends Model
     // Liên kết tới khách hàng (user)
     public function user()
     {
-        return $this->belongsTo(KhachHang::class, 'user_id', 'id_kh');
+        return $this->belongsTo(NguoiDung::class, 'user_id', 'id_nd');
     }
 
     // Liên kết tới sản phẩm

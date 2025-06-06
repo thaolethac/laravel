@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Khachhang extends Authenticatable
+class NguoiDung extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
@@ -34,7 +34,7 @@ class Khachhang extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'id_kh' => 'int',
+        'id_nd' => 'int',
         'sdt' => 'int',
         'id_phanquyen' => 'int',
     ];
@@ -51,12 +51,12 @@ class Khachhang extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'khachhang';
+    protected $table = 'nguoidung';
 
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'id_kh';
+    protected $primaryKey = 'id_nd';
 }

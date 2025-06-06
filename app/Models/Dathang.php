@@ -20,7 +20,7 @@ class Dathang extends Model
         'email',
         'sdt',
         'trangthai',
-        'id_kh'
+        'id_nd'
     ];
 
     protected $casts = [
@@ -34,7 +34,7 @@ class Dathang extends Model
         'email' => 'string',
         'sdt' => 'int',
         'trangthai' => 'string',
-        'id_kh' => 'int',
+        'id_nd' => 'int',
     ];
 
     protected $dates = [

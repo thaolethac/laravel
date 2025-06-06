@@ -18,9 +18,9 @@ class OrderViewMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->id_kh){
+        if (Auth::check() && Auth::user()->id_nd){
 
-            $dathang = Dathang::where('id_kh', Auth::user()->id_kh)->where('id_dathang', $request->route('id'))->first();
+            $dathang = Dathang::where('id_nd', Auth::user()->id_nd)->where('id_dathang', $request->route('id'))->first();
             if($dathang){
                 return $next($request);
             }else{
@@ -30,6 +30,6 @@ class OrderViewMiddleware
         else {
             return redirect('/');
         }
-       
+
     }
 }

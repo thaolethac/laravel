@@ -148,9 +148,9 @@ class CartController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()) {
-                $showusers = DB::table('khachhang')
-                    ->select('khachhang.*')
-                    ->where('khachhang.id_kh', Auth::user()->id_kh)
+                $showusers = DB::table('nguoidung')
+                    ->select('nguoidung.*')
+                    ->where('nguoidung.id_nd', Auth::user()->id_nd)
                     ->get();
                 return view('pages.checkout', ['showusers' => $showusers]);
             }
@@ -174,7 +174,7 @@ class CartController extends Controller
         $validatedDataDatHang['email'] = $request->display_email;
         $validatedDataDatHang['sdt'] = $request->display_sdt;
         $validatedDataDatHang['trangthai'] = "đang xử lý";
-        $validatedDataDatHang['id_kh'] = Auth::user()->id_kh;
+        $validatedDataDatHang['id_nd'] = Auth::user()->id_nd;
 
         $dathangCre = Dathang::create($validatedDataDatHang);
 
@@ -201,7 +201,7 @@ class CartController extends Controller
             $validatedDataCTDatHang['giakhuyenmai'] = $item['giakhuyenmai'];
             $validatedDataCTDatHang['id_sanpham'] = $item['id_sanpham'];
             $validatedDataCTDatHang['id_dathang'] = $dathangCre->id_dathang;
-            $validatedDataCTDatHang['id_kh'] = Auth::user()->id_kh;
+            $validatedDataCTDatHang['id_nd'] = Auth::user()->id_nd;
 
             ChitietDonhang::create($validatedDataCTDatHang);
         }
@@ -285,15 +285,15 @@ class CartController extends Controller
     // public function capnhatThongTin(Request $request)
     // {
     //     $request->validate([
-    //         'id_kh' => 'required|exists:khachhang,id_kh',
+    //         'id_nd' => 'required|exists:nguoidung,id_nd',
     //         'diachi' => 'required|string|max:100',
     //         'hoten' => 'required|string|max:100',
     //         'email' => 'required|email|max:100',
     //         'sdt' => 'required|digits_between:9,11',
     //     ]);
 
-    //     DB::table('khachhang')
-    //         ->where('id_kh', $request->id_kh)
+    //     DB::table('nguoidung')
+    //         ->where('id_nd', $request->id_nd)
     //         ->update([
     //             'diachi' => $request->diachi,
     //             'hoten'  => $request->hoten,

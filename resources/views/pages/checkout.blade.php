@@ -17,7 +17,7 @@
                 <div style="font-size: 18px;"><strong>Địa chỉ:</strong> <span id="display_diachigiaohang">{{$showuser->diachi}}</span></div>
             </div>
 
-            <input type="hidden" name="id_kh" value="{{$showuser->id_kh}}">
+            <input type="hidden" name="id_nd" value="{{$showuser->id_nd}}">
             <input type="hidden" id="input_hoten" name="display_hoten" value="{{$showuser->hoten}}">
             <input type="hidden" id="input__email" name="display_email" value="{{$showuser->email}}">
             <input type="hidden" id="input_sdt" name="display_sdt" value="{{$showuser->sdt}}">
@@ -130,7 +130,7 @@
     <div class="modal-dialog">
         <form id="updateInfoForm" class="modal-content">
             @csrf
-            <input type="hidden" name="id_kh" value="{{ $showuser->id_kh }}">
+            <input type="hidden" name="id_nd" value="{{ $showuser->id_nd }}">
             <div class="modal-header">
                 <h5 class="modal-title" id="updateInfoModalLabel">Cập nhật thông tin khách hàng</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">

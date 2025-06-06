@@ -4,7 +4,7 @@ namespace App\Repositories;
 use App\Repositories\IAdminRepository;
 use App\Http\Requests;
 
-use App\Models\Khachhang;
+use App\Models\NguoiDung;
 use App\Models\Sanpham;
 use App\Models\Dathang;
 
@@ -43,7 +43,7 @@ class AdminRepository implements IAdminRepository{
     }
     public function totalsCustomer()
     {
-        return Khachhang::count();
+        return NguoiDung::count();
     }
 
     public function totalsOrders()
@@ -57,7 +57,7 @@ class AdminRepository implements IAdminRepository{
             ->where('dathang.trangthai', 'giao thành công')
             ->sum(DB::raw('chitiet_donhang.giakhuyenmai * chitiet_donhang.soluong'));
     }
-    
+
     public function totalsSaleProducts()
     {
         return DB::table('chitiet_donhang')

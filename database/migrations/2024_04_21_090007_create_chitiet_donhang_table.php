@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('giakhuyenmai')->nullable();
             $table->integer('id_sanpham');
             $table->integer('id_dathang')->unsigned(); // Unsigned to match the data type of id_dathang in dathang table
-            $table->integer('id_kh');
+            $table->integer('id_nd');
         });
     }
 

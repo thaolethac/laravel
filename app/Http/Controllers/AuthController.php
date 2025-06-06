@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Khachhang;
+use App\Models\NguoiDung;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,7 +19,7 @@ class AuthController extends Controller
     }
     public function registerPost(Request $request)
     {
-        $kh = new Khachhang();
+        $kh = new NguoiDung();
         $kh->hoten = $request->name;
         $kh->email = $request->email;
         $kh->password = Hash::make($request->password);
@@ -51,7 +51,7 @@ class AuthController extends Controller
     }
     public function kiemTraEmail(Request $request)
     {
-        $exists = KhachHang::where('email', $request->email)->exists();
+        $exists = NguoiDung::where('email', $request->email)->exists();
         return response()->json(['exists' => $exists]);
     }
 }
